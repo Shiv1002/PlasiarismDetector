@@ -1,0 +1,2 @@
+Environmental issues are issues related to human impact on the living environment, habitats, land use and natural resources. The following alphabetical list shows some of the main known environmental issues by major topic title:HTTP Methods
+Web applications use different HTTP methods when accessing URLs. You should familiarize yourself with the HTTP methods as you work with Flask. By default, a route only answers to GET requests. You can use the methods argument of the route() decorator to handle different HTTP methods.
