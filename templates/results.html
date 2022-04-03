@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+<style>
+  table{
+    background-color: whitesmoke;
+    font-size: large;
+    text-decoration-color: black;
+  }
+  table a{ display: block ; }
+  table tr th {
+    text-align: justify;
+     }
+  td{
+    color: black;
+  } 
+   
+</style>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+      <h1 class="display-4">Results</h1>
+      
+      <table border="2px">
+        <tr   >
+          <th text-align="justify">
+            <span> Matched from  </span>
+          </th>
+            <th>
+              <span> Follow here </span>
+            </th>
+        </tr>
+        {% for x in output%}
+        <tr>
+          <td>
+               {{x[2]}}
+          </td>
+          <td id="followLink">
+            <a href="{{x[1]}}">
+              {{x[0]}}
+            </a> 
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      
+    </div>
+</div>
+{% endblock content %}
