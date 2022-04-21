@@ -50,8 +50,7 @@ def compare(sent1, sent2):
     if n1 == 0 or n2 == 0:
         return 0
 
-    return float(100 * (count / n1)) #* (min(n1, n2) / max(n1, n2))
-
+    return int(100 * (count / n1) * (min(n1, n2) / max(n1, n2)) ) 
 #7
 def get_urls(sent):
     Base_string = "https://www.google.com/search?q="
@@ -74,9 +73,9 @@ def get_urls(sent):
     count = 0
     
    
-    # only top  5 links is included excluding youtube links
+    # only top  3 links is included excluding youtube links
     for x in links_list:
-        if count == 5:
+        if count == 3:
             break
         if 'youtube' not in x and 'pdf' not in x:
             links.append(x)
@@ -179,6 +178,38 @@ def get_ans_for_one_sent(sent):
 def myfun(x):
     return x[0]
 
+def highlighted_sen(sen):
+       sen = sen.replace("%","%25")
+       sen = sen.replace("!","%21")
+       sen = sen.replace("#","%23")
+       sen = sen.replace("$","%24")
+       sen = sen.replace("&","%26")
+       sen = sen.replace("'","%27")
+       sen = sen.replace("*","%2A")
+       sen = sen.replace("+","%2B")
+       sen = sen.replace(",","%2C")
+       sen = sen.replace("-","%2D")
+       sen = sen.replace("/","%2F")
+       sen = sen.replace(":","%3A")
+       sen = sen.replace(";","%3B")
+       sen = sen.replace("<","%3C")
+       sen = sen.replace("=","%3D")
+       sen = sen.replace(">","%3E")
+       sen = sen.replace("?","%3F")
+       sen = sen.replace("@","%40")
+       sen = sen.replace("[","%5B")
+       sen = sen.replace("]","%5D")
+       sen = sen.replace("^","%5E")
+       sen = sen.replace("_","%5F")
+       sen = sen.replace("`","%60")
+       sen = sen.replace("{","%7B")
+       sen = sen.replace("|","%7C")
+       sen = sen.replace("}","%7D")
+       sen = sen.replace(" ","%20")
+       sen = sen.replace(",","%2C")
+       sen = sen.replace("~","%7E")
+       return sen
+
 #1
 def main_function(txt):
     all_sentences = tokenize_sentence(txt)
@@ -187,7 +218,10 @@ def main_function(txt):
         if len(into_words(x)) <= 3:
             print(x , " less length sent ")
             continue
+        
         prob, url_ans = get_ans_for_one_sent(x)
+        sentence = highlighted_sen(x)
+        url_ans += "#:~:text=" + sentence
         ans.append([prob, url_ans, x])
     print("--- ---=========55555555==========",ans)   
     ans.sort(key=myfun,reverse=True)
