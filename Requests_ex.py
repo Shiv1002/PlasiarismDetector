@@ -73,9 +73,9 @@ def get_urls(sent):
     count = 0
     
    
-    # only top  3 links is included excluding youtube links
+    # only top  2 links is included excluding youtube links
     for x in links_list:
-        if count == 3:
+        if count == 2:
             break
         if 'youtube' not in x and 'pdf' not in x:
             links.append(x)
@@ -221,8 +221,8 @@ def main_function(txt):
         
         prob, url_ans = get_ans_for_one_sent(x)
         sentence = highlighted_sen(x)
-        url_ans += "#:~:text=" + sentence
-        ans.append([prob, url_ans, x])
+        percen = str(prob)+"%"
+        ans.append([percen, url_ans, x])
     print("--- ---=========55555555==========",ans)   
     ans.sort(key=myfun,reverse=True)
     return ans
